@@ -27,7 +27,9 @@ SSL сертификат
 Ну и все. Подрубаемся по ssh к нему. Можно даже под рутом. Надо быть чуть осторожнее, зато не надо запариваться насчет нового пользователя. К тому же, лаба не просит делать нового юзера на сервере
 
 Пишем в консольку
-``apt update && apt upgrade -y && apt install nginx``
+```
+apt update && apt upgrade -y && apt install nginx
+```
 Теперь в одну строку мы обновили все, что не обновлено, и поставили nginx. Осталось настроить его, сделать html файлы и ssl сертификат
 
 ## Делаем HTML файлы
@@ -43,10 +45,12 @@ SSL сертификат
 
 Так как мы профессиональные серверовары, то и сертификат мы сможем сварить сами. Берем консольку и пишем
 
-``mkdir -p /root/lab1/cert
+```
+mkdir -p /root/lab1/cert
 openssl genpkey -algorithm RSA -out  /root/lab1/cert/cert_key.key -aes128 -pass pass:yourpassword
 openssl req -new -key  /root/lab1/cert/cert_key.key -out  /root/lab1/cert/cert.csr -passin pass:yourpassword
-openssl x509 -req -days 365 -in  /root/lab1/cert/cert.csr -signkey /root/lab1/cert/cert_key.key -out /root/lab1/cert/cert.crt -passin pass:yourpassword``
+openssl x509 -req -days 365 -in  /root/lab1/cert/cert.csr -signkey /root/lab1/cert/cert_key.key -out /root/lab1/cert/cert.crt -passin pass:yourpassword
+```
 
 Теперь нам нужно только настроить сам nginx.  
 
